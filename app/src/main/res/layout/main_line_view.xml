@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/estilo_cell"
+    android:elevation="1dp"
+    android:translationZ="3dp">
+
+
+    <ImageView
+        android:id="@+id/main_line_more"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/brflan"
+        android:background="@drawable/imagem_borda"
+        />
+
+    <ImageView
+        android:id="@+id/imagemIcons"
+        android:layout_width="20dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/main_line_more"
+        android:src="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/main_line_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/main_line_more"
+        android:textAlignment="center"
+        tools:text="Line 1"
+        android:textSize="15sp"
+        android:textColor="@color/corLaranja"/>
+
+    <TextView
+        android:id="@+id/main_line_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/imagemIcons"
+        android:text="lolol"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        tools:text="Line 2" />
+
+    <TextView
+        android:id="@+id/main_line_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_toRightOf="@id/imagemIcons"
+        android:text="lolol"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        tools:text="Line 3" />
+
+    <TextView
+        android:id="@+id/main_line_title4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_toRightOf="@id/imagemIcons"
+        android:text="lololol"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        tools:text="Line 4" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:visibility="visible"
+        android:background="#11000000"/>
+
+
+</RelativeLayout>

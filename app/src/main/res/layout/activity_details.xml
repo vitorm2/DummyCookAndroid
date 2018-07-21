@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,68 @@
 
 
     <TextView
-        android:id="@+id/texto1"
+        android:id="@+id/text_recipeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/image_recipe"
+        android:layout_margin="10dp"
+        android:textColor="@color/corLaranja"
+        android:textSize="25sp"
         tools:text="Aqui" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/title_requiriments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_recipeName"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Requiriments:"
+        android:textColor="@color/corLaranja"
+        android:textSize="20sp"
+        tools:text="Requiriments:" />
+
+    <TextView
+        android:id="@+id/text_requiriments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_requiriments"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        tools:text="Requiriments:"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/title_ingledients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_requiriments"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Ingredients:"
+        android:textColor="@color/corLaranja"
+        android:textSize="20sp"
+        tools:text="Ingredients:" />
+
+    <TextView
+        android:id="@+id/text_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_ingledients"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        tools:text="1 Egg\n 250ml Milk"
+        android:textSize="20sp"
+        />
+
+    <ImageView
+        android:id="@+id/image_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/brflan"
+        android:background="@drawable/imagem_borda"/>
+
+</RelativeLayout>

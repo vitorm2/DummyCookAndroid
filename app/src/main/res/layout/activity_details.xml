@@ -1,75 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DetailsActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipToPadding="true"
+    android:fillViewport="true">
 
-
-    <TextView
-        android:id="@+id/text_recipeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image_recipe"
-        android:layout_margin="10dp"
-        android:textColor="@color/corLaranja"
-        android:textSize="25sp"
-        tools:text="Aqui" />
-
-    <TextView
-        android:id="@+id/title_requiriments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_recipeName"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="Requiriments:"
-        android:textColor="@color/corLaranja"
-        android:textSize="20sp"
-        tools:text="Requiriments:" />
-
-    <TextView
-        android:id="@+id/text_requiriments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_requiriments"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        tools:text="Requiriments:"
-        android:textSize="20sp"
-        />
-
-    <TextView
-        android:id="@+id/title_ingledients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_requiriments"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="Ingredients:"
-        android:textColor="@color/corLaranja"
-        android:textSize="20sp"
-        tools:text="Ingredients:" />
-
-    <TextView
-        android:id="@+id/text_ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_ingledients"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        tools:text="1 Egg\n 250ml Milk"
-        android:textSize="20sp"
-        />
-
-    <ImageView
-        android:id="@+id/image_recipe"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/brflan"
-        android:background="@drawable/imagem_borda"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        tools:context=".DetailsActivity">
 
-</RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_recipeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_recipe"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/corLaranja"
+            android:textSize="25sp"
+            tools:text="Aqui" />
+
+        <TextView
+            android:id="@+id/title_requiriments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_recipeName"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="10dp"
+            android:text="Requiriments:"
+            android:textColor="@color/corLaranja"
+            android:textSize="20sp"
+            tools:text="Requiriments:" />
+
+        <TextView
+            android:id="@+id/text_requiriments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_requiriments"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            tools:text="Requiriments:" />
+
+        <TextView
+            android:id="@+id/title_ingledients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_requiriments"
+            android:layout_marginBottom="22dp"
+            android:layout_marginStart="10dp"
+            android:text="Ingredients:"
+            android:textColor="@color/corLaranja"
+            android:textSize="20sp"
+            tools:text="Ingredients:" />
+
+        <TextView
+            android:id="@+id/text_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_ingledients"
+            android:layout_marginBottom="36dp"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            tools:text="1 Egg\n 250ml Milk" />
+
+        <ImageView
+            android:id="@+id/image_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="false"
+            android:background="@drawable/imagem_borda"
+            android:cropToPadding="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/brflan" />
+
+        <Button
+            android:id="@+id/button_start"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/text_ingredients"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="95dp"
+            android:background="@color/corLaranja"
+            android:text="Start"
+            android:textColor="@color/corBranca" />
+
+        <Button
+            android:id="@+id/button_steps"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/button_start"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/corLaranja"
+            android:text="Steps"
+            android:textColor="@color/corBranca" />
+
+    </RelativeLayout>
+</ScrollView>

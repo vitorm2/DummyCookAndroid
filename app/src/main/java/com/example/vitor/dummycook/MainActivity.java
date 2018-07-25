@@ -5,10 +5,8 @@ import android.app.Activity;
 
 
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import java.util.ArrayList;
 
@@ -33,19 +31,105 @@ public class MainActivity extends Activity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        String[] names = {"Alan", "Arthur", "Nicolas", "Angela", "Brenda", "Liz"};
-        String[] cities = {"Rio", "Miami", "Paris", "Montevideo", "Tokyo", "Nairobi"};
-        String desc = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit";
-        ArrayList<Pessoa> lista = new ArrayList<>();
+        //String[] names = {"Alan", "Arthur", "Nicolas", "Angela", "Brenda", "Liz"};
+        //String[] cities = {"Rio", "Miami", "Paris", "Montevideo", "Tokyo", "Nairobi"};
+        //String desc = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit";
 
-        for(int i=0; i<5; i++){
-            Pessoa p1 = new Pessoa(names[i], cities[i], desc, 12);
-            lista.add(i,p1);
-        }
+        //ArrayList<Pessoa> lista = new ArrayList<>();
+
+
+        ArrayList<Step> stepList_rec1 =  new ArrayList<>();
+
+        Step r1_step1 =  new Step("Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.",
+                "Melt the sugar", 1, "", "step1.mov", "");
+        Step r1_step2 =  new Step("Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.",
+                "Turning off the stove", 2, "step2", "", "");
+        Step r1_step3 =  new Step("Place all other ingredients into a blender, blend it for 5 minutes.",
+                "Blend the ingredients", 3, "", "step3.mov", "300");
+        Step r1_step4 =  new Step("Pour mixture into the pan. The pan is now with the sugar caramelized",
+                "Pour the mixture into the pan", 4, "step4", "", "");
+        Step r1_step5 =  new Step("Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside",
+                "Place water into a cake tin", 5, "step5", "", "");
+        Step r1_step6 =  new Step("Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.",
+                "Put the cake tin into the oven", 6, "step6", "", "");
+        Step r1_step7 =  new Step("Carefully remove your pan from the oven, watch out as the water will be very hot",
+                "Remove from the oven", 7, "step7", "", "");
+        Step r1_step8 =  new Step("The flan must cool for a few hours, better if you let it rest on the refrigerator overnight",
+                "Let it cool", 8, "", "", "");
+        Step r1_step9 =  new Step("To take if off the pan, heat the pan over low heat for 20 seconds, then invert into a serving plate. Pick a proper plate as it needs to be large enough for the flan and some of the caramel",
+                "Transfer to a plate", 9, "step9", "", "20");
+        Step r1_step10 =  new Step("Enjoy your brazilian flan!", "Enjoy your flan!", 10,
+                "step10", "", "");
+
+        stepList_rec1.add(r1_step1);
+        stepList_rec1.add(r1_step2);
+        stepList_rec1.add(r1_step3);
+        stepList_rec1.add(r1_step4);
+        stepList_rec1.add(r1_step5);
+        stepList_rec1.add(r1_step6);
+        stepList_rec1.add(r1_step7);
+        stepList_rec1.add(r1_step8);
+        stepList_rec1.add(r1_step9);
+        stepList_rec1.add(r1_step10);
+
+
+        Recipe r1 = new Recipe("Brazilan Flan", "123",  stepList_rec1, "Oven, Pan, Cake Tin and Stoven",
+                "1 cup sugar\n2 cans sweetened condensed milk\n1 can whole milk\n3 eggs",
+                "6h", "8", "R$16,00");
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ArrayList<Step> stepList_rec2 =  new ArrayList<>();
+
+        Step r2_step1 = new Step("Turn on your oven to 325 degrees F (165 degrees C) and let it preheat",
+                "Turn on your oven", 1, "preheat", "", "");
+        Step r2_step2 = new Step("In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth",
+                "Turn on your oven", 2, "mixing", "", "");
+        Step r2_step3 = new Step("Blend in eggs, one at a time",
+                "Turn on your oven", 3, "blendeggs", "", "");
+
+        stepList_rec2.add(r2_step1);
+        stepList_rec2.add(r2_step2);
+        stepList_rec2.add(r2_step3);
+
+        Recipe r2 = new Recipe("Double Layer Pumpkin Cheesecake", "1", stepList_rec2, "1 beater",
+                "2 (8 ounce) packages cream cheese, softened\n1/2 cup white sugar\n1/2 teaspoon vanilla extract\n2 eggs\n1 (9 inch) prepared graham cracker crust\n1/2 pumpkin puree\n1/2 teaspoon ground cinnamon\n1 pinch ground cloves\n1 pinch ground nutmeg\n1/2 cup frozen whipped topping thawed",
+                "4h10", "8", "R$ 24,00");
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ArrayList<Step> stepList_rec3 =  new ArrayList<>();
+
+        Step r3_step1 = new Step("Turn on your oven to 325 degrees F (165 degrees C) and let it preheat",
+            "Turn on your oven", 1, "preheat", "", "");
+        Step r3_step2 = new Step("In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth",
+            "Turn on your oven", 2, "mixing", "", "");
+        Step r3_step3 = new Step("Blend in eggs, one at a time",
+            "Turn on your oven", 3, "blendeggs", "", "");
+
+        stepList_rec2.add(r3_step1);
+        stepList_rec2.add(r3_step2);
+        stepList_rec2.add(r3_step3);
+
+        Recipe r3 =  new Recipe("Pumpkin Ginger Cupcakes", "2", stepList_rec3, "1 beater",
+                "", "1h 20min", "2 pratos", "R$ 24,00");
+
+        //for(int i=0; i<5; i++){
+          //  Pessoa p1 = new Pessoa(names[i], cities[i], desc, 12);
+            //lista.add(i,p1);
+        //}
+
+        ArrayList<Recipe> recipeList =  new ArrayList<>();
+        recipeList.add(r1);
+        recipeList.add(r2);
+        recipeList.add(r3);
+
+
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(lista);
-
+        mAdapter = new MyAdapter(recipeList);
         mRecyclerView.setAdapter(mAdapter);
 
 

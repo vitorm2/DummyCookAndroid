@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".Steps" />
+        <activity android:name=".Step" />
         <activity android:name=".StepsActivity"></activity>
     </application>
 

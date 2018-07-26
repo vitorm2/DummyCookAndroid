@@ -11,11 +11,11 @@ import java.util.List;
 public class StepsListAdapter extends BaseAdapter {
 
 
-    private final List<String> steps;
+    private final List<Step> steps;
     private final Activity act;
 
-    public StepsListAdapter(List<String> steps, Activity act) {
-        this.steps = steps;
+    public StepsListAdapter(List<Step> stepsList, Activity act) {
+        this.steps = stepsList;
         this.act = act;
     }
 
@@ -38,16 +38,16 @@ public class StepsListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = act.getLayoutInflater()
                 .inflate(R.layout.line_steps_list, parent, false);
-        String curso = steps.get(position);
+        Step stepSelected = steps.get(position);
 
 
         TextView text_numStepsList = (TextView) view.findViewById(R.id.text_numStepslist);
         TextView title_textStepsList = (TextView) view.findViewById(R.id.text_titleStepslist);
         TextView text_detailsStepList = (TextView) view.findViewById(R.id.text_detailsSteplist);
 
-        text_numStepsList.setText(""+position);
-        title_textStepsList.setText(curso);
-        text_detailsStepList.setText(curso);
+        text_numStepsList.setText(""+(position+1));
+        title_textStepsList.setText(stepSelected.getTitleStep());
+        text_detailsStepList.setText(stepSelected.getTextStep());
 
         return view;
 

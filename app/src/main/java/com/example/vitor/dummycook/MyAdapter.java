@@ -1,16 +1,18 @@
 package com.example.vitor.dummycook;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,90 +20,99 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.PessoaViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> {
 
-    private final List<Pessoa> mUsers;
+    private final List<Recipe> mRecipes;
+    public Resources mContext;
 
 
-    public MyAdapter(ArrayList users) {
-        mUsers = users;
-        Log.d("aqui", "ta aqui");
+    public MyAdapter(ArrayList recipes, Resources context) {
+        mRecipes = recipes;
+        mContext = context;
     }
 
 
     @Override
-    public PessoaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new PessoaViewHolder(LayoutInflater.from(parent.getContext())
+    public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new RecipeViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.main_line_view, parent, false));
     }
 
 
 
     @Override
-    public void onBindViewHolder(PessoaViewHolder holder, int position) {
-        holder.title.setText(String.format(Locale.getDefault(), "%s, %d - %s",
-                mUsers.get(position).getName(),
-                mUsers.get(position).getAge(),
-                mUsers.get(position).getCity()
+    public void onBindViewHolder(RecipeViewHolder holder, int position) {
+        holder.titleRecipe.setText(String.format(Locale.getDefault(),
+                mRecipes.get(position).getName()
         ));
+        holder.textCost.setText(mRecipes.get(position).getCost());
+        holder.textServes.setText(mRecipes.get(position).getServes());
+        holder.textTime.setText(mRecipes.get(position).getTime());
+
+        int resID = mContext.getIdentifier(mRecipes.get(position).getRecipeImg(), "drawable", "com.example.vitor.dummycook");
+        holder.imageRecipe.setImageResource(resID);
 
 
-        holder.moreButton1.setOnClickListener(view -> updateItem(holder, position));
+        holder.moreButton1.setOnClickListener(view -> mudaTela(holder, position));
     }
 
     @Override
     public int getItemCount() {
-        return mUsers != null ? mUsers.size() : 0;
+        return mRecipes != null ? mRecipes.size() : 0;
     }
 
-    /**
-     * Método publico chamado para atualziar a lista.
-     *
-     * @param user Novo objeto que será incluido na lista.
-     */
-    public void updateList(Pessoa user) {
-        insertItem(user);
-    }
+   // public void updateList(Recipe recipe) {
+   //     insertItem(recipe);
+   // }
 
     // Método responsável por inserir um novo usuário na lista e notificar que há novos itens.
-    private void insertItem(Pessoa user) {
-        mUsers.add(user);
-        notifyItemInserted(getItemCount());
-    }
+//    private void insertItem(Recipe recipe) {
+//        mRecipes.add(recipe);
+//        notifyItemInserted(getItemCount());
+//    }
 
     // Método responsável por atualizar um usuário já existente na lista.
-    private void updateItem(PessoaViewHolder holder, int position) {
+    private void mudaTela(RecipeViewHolder holder, int position) {
         //Pessoa userModel = mUsers.get(position);
         //userModel.incrementAge();
         //notifyItemChanged(position);
         //Log.d("123", "POSIÇÃO: "+ position);
         Intent i =  new Intent(holder.context, DetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("pessoa", mUsers.get(position));
+        bundle.putSerializable("recipeSelected", mRecipes.get(position));
+
+        Log.d("recipeName", mRecipes.get(position).getName());
 
         i.putExtras(bundle);
 
+        Log.d("Aqui", "Aqui");
         holder.context.startActivity(i);
     }
 
-    // Método responsável por remover um usuário da lista.
-    private void removerItem(int position) {
-        mUsers.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, mUsers.size());
-    }
+//    // Método responsável por remover um usuário da lista.
+//    private void removerItem(int position) {
+//        mRecipes.remove(position);
+//        notifyItemRemoved(position);
+//        notifyItemRangeChanged(position, mRecipes.size());
+//    }
 
-    public static class PessoaViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView moreButton;
+    public static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        public TextView titleRecipe;
+        public TextView textCost;
+        public TextView textServes;
+        public TextView textTime;
+        public ImageView imageRecipe;
         public Button moreButton1;
         public final Context context;
 
-        public PessoaViewHolder(View itemView) {
+        public RecipeViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.main_line_title);
-            moreButton = (ImageView) itemView.findViewById(R.id.main_line_more);
-            moreButton.setClipToOutline(true); //ativa bordas
+            titleRecipe = (TextView) itemView.findViewById(R.id.title_recipe);
+            textCost = (TextView) itemView.findViewById(R.id.text_cost);
+            textServes = (TextView) itemView.findViewById(R.id.text_serves);
+            textTime = (TextView) itemView.findViewById(R.id.text_time);
+            imageRecipe = (ImageView) itemView.findViewById(R.id.image_recipe);
+            imageRecipe.setClipToOutline(true); //ativa bordas
             context = itemView.getContext();
 
             moreButton1 = (Button) itemView.findViewById(R.id.button);

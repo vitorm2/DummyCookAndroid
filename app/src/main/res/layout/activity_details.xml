@@ -17,17 +17,28 @@
         tools:context=".DetailsActivity">
 
 
+        <ImageView
+            android:id="@+id/image_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="false"
+            android:background="@drawable/imagem_borda"
+            android:cropToPadding="false"
+            android:scaleType="centerCrop"
+            android:contentDescription="TODO" />
+
         <TextView
             android:id="@+id/text_recipeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/image_recipe"
-            android:layout_margin="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
             android:textColor="@color/corLaranja"
+            android:layout_marginTop="150dp"
+            android:layout_marginStart="10dp"
             android:textSize="25sp"
             tools:text="Aqui" />
+
 
         <TextView
             android:id="@+id/title_requiriments"
@@ -36,6 +47,7 @@
             android:layout_below="@id/text_recipeName"
             android:layout_marginBottom="16dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
             android:text="Requiriments:"
             android:textColor="@color/corLaranja"
             android:textSize="20sp"
@@ -73,19 +85,6 @@
             android:textSize="20sp"
             tools:text="1 Egg\n 250ml Milk" />
 
-        <ImageView
-            android:id="@+id/image_recipe"
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:layout_margin="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:adjustViewBounds="false"
-            android:background="@drawable/imagem_borda"
-            android:cropToPadding="false"
-            android:scaleType="centerCrop"
-            android:src="@drawable/brflan" />
 
         <Button
             android:id="@+id/button_start"

@@ -4,7 +4,11 @@ package com.example.vitor.dummycook;
 import android.app.Activity;
 
 
+import android.content.Context;
+
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -72,8 +76,7 @@ public class MainActivity extends Activity {
         stepList_rec1.add(r1_step9);
         stepList_rec1.add(r1_step10);
 
-
-        Recipe r1 = new Recipe("Brazilan Flan", "123",  stepList_rec1, "Oven, Pan, Cake Tin and Stoven",
+        Recipe r1 = new Recipe("Brazilan Flan", "image1",  stepList_rec1, "Oven, Pan, Cake Tin and Stoven",
                 "1 cup sugar\n2 cans sweetened condensed milk\n1 can whole milk\n3 eggs",
                 "6h", "8", "R$16,00");
 
@@ -93,7 +96,8 @@ public class MainActivity extends Activity {
         stepList_rec2.add(r2_step2);
         stepList_rec2.add(r2_step3);
 
-        Recipe r2 = new Recipe("Double Layer Pumpkin Cheesecake", "1", stepList_rec2, "1 beater",
+
+        Recipe r2 = new Recipe("Double Layer Pumpkin Cheesecake", "image2", stepList_rec2, "1 beater",
                 "2 (8 ounce) packages cream cheese, softened\n1/2 cup white sugar\n1/2 teaspoon vanilla extract\n2 eggs\n1 (9 inch) prepared graham cracker crust\n1/2 pumpkin puree\n1/2 teaspoon ground cinnamon\n1 pinch ground cloves\n1 pinch ground nutmeg\n1/2 cup frozen whipped topping thawed",
                 "4h10", "8", "R$ 24,00");
 
@@ -113,7 +117,7 @@ public class MainActivity extends Activity {
         stepList_rec2.add(r3_step2);
         stepList_rec2.add(r3_step3);
 
-        Recipe r3 =  new Recipe("Pumpkin Ginger Cupcakes", "2", stepList_rec3, "1 beater",
+        Recipe r3 =  new Recipe("Pumpkin Ginger Cupcakes", "image3", stepList_rec3, "1 beater",
                 "", "1h 20min", "2 pratos", "R$ 24,00");
 
         //for(int i=0; i<5; i++){
@@ -127,9 +131,10 @@ public class MainActivity extends Activity {
         recipeList.add(r3);
 
 
-
+        Context context =  getApplicationContext();
+        android.content.res.Resources res = context.getResources();
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(recipeList);
+        mAdapter = new MyAdapter(recipeList, res);
         mRecyclerView.setAdapter(mAdapter);
 
 

@@ -16,14 +16,15 @@ public class StepsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
 
-        Pessoa user = (Pessoa) getIntent().getSerializableExtra("pessoa");
+        Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipeSelected");
 
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add(user.getCity());
-        lista.add(user.getName());
-        lista.add(""+user.getAge());
+        ArrayList<Step> stepsList = new ArrayList<>();
+        for(Step s: recipe.getStepList()){
+           stepsList.add(s);
+        }
 
-        ListView stepsList = (ListView) findViewById(R.id.stepList);
+
+        ListView stepsListView = (ListView) findViewById(R.id.stepList);
 
 
         TextView text_numStepsList = (TextView) findViewById(R.id.text_numStepslist);
@@ -35,7 +36,7 @@ public class StepsActivity extends AppCompatActivity {
                 R.layout.line_steps_list, lista);
         */
 
-        StepsListAdapter adapter = new StepsListAdapter(lista, this);
-        stepsList.setAdapter(adapter);
+        StepsListAdapter adapter = new StepsListAdapter(stepsList, this);
+        stepsListView.setAdapter(adapter);
     }
 }

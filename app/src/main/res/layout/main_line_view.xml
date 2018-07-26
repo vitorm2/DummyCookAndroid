@@ -13,14 +13,13 @@
 
 
     <ImageView
-        android:id="@+id/main_line_more"
+        android:id="@+id/image_recipe"
         android:layout_width="65dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_margin="10dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/brflan"
+        android:scaleType="centerCrop"
         android:background="@drawable/imagem_borda"
         />
 
@@ -28,23 +27,23 @@
         android:id="@+id/imagemIcons"
         android:layout_width="20dp"
         android:layout_height="46dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/main_line_more"
+        android:layout_marginTop="31dp"
+        android:layout_toRightOf="@id/image_recipe"
         android:src="@drawable/icon" />
 
     <TextView
-        android:id="@+id/main_line_title"
+        android:id="@+id/title_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/main_line_more"
+        android:layout_toRightOf="@id/image_recipe"
         android:textAlignment="center"
         tools:text="Line 1"
         android:textSize="15sp"
         android:textColor="@color/corLaranja"/>
 
     <TextView
-        android:id="@+id/main_line_title2"
+        android:id="@+id/text_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -55,7 +54,7 @@
         tools:text="Line 2" />
 
     <TextView
-        android:id="@+id/main_line_title3"
+        android:id="@+id/text_serves"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
@@ -66,7 +65,7 @@
         tools:text="Line 3" />
 
     <TextView
-        android:id="@+id/main_line_title4"
+        android:id="@+id/text_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"

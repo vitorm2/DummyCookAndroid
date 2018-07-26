@@ -1,8 +1,11 @@
 package com.example.vitor.dummycook;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -16,12 +19,11 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipeSelected");
 
-        Pessoa user = (Pessoa) getIntent().getSerializableExtra("pessoa");
-
-        TextView mText = (TextView) findViewById(R.id.text_recipeName);
-        TextView texto2 = (TextView) findViewById(R.id.text_requiriments);
-        TextView texto3 = (TextView) findViewById(R.id.text_ingredients);
+        TextView recipeName = (TextView) findViewById(R.id.text_recipeName);
+        TextView textRequiriments = (TextView) findViewById(R.id.text_requiriments);
+        TextView textIngredients = (TextView) findViewById(R.id.text_ingredients);
         ImageView imageRecipe = (ImageView) findViewById(R.id.image_recipe);
         Button stratButton = (Button) findViewById(R.id.button_start);
         Button stepsButton = (Button) findViewById(R.id.button_steps);
@@ -31,7 +33,7 @@ public class DetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(DetailsActivity.this, StepsActivity.class);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("pessoa",user);
+                bundle.putSerializable("recipeSelected",recipe);
 
                 i.putExtras(bundle);
 
@@ -39,10 +41,12 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        int resID = getResources().getIdentifier(recipe.getRecipeImg(), "drawable", "com.example.vitor.dummycook");
 
+        imageRecipe.setImageResource(resID);
         imageRecipe.setClipToOutline(true);
-        mText.setText(user.getName());
-        texto2.setText(user.getCity());
-        texto3.setText(user.getDescription());
+        recipeName.setText(recipe.getName());
+        textRequiriments.setText(recipe.getTextRequirements());
+        textIngredients.setText(recipe.getTextIngredients());
     }
 }

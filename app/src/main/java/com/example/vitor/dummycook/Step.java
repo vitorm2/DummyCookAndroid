@@ -1,6 +1,8 @@
 package com.example.vitor.dummycook;
 
-public class Step {
+import java.io.Serializable;
+
+public class Step implements Serializable{
 
     private String textStep;
     private String titleStep;

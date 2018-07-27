@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <View
+        android:id="@+id/view_logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv"
+        android:layout_height="110dp"
+        android:layout_marginTop="51dp"
         android:background="@color/corLaranja"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="160dp"
+        android:background="@color/corLaranja" />
 
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:id="@+id/view_search"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/laranjaEscuro"
+        />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/estilo_cell"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:src="@drawable/dummycooklogo" />
+
+
+</RelativeLayout>

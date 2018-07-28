@@ -61,16 +61,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> 
         return mRecipes != null ? mRecipes.size() : 0;
     }
 
-   // public void updateList(Recipe recipe) {
-   //     insertItem(recipe);
-   // }
-
-    // Método responsável por inserir um novo usuário na lista e notificar que há novos itens.
-//    private void insertItem(Recipe recipe) {
-//        mRecipes.add(recipe);
-//        notifyItemInserted(getItemCount());
-//    }
-
     // Método responsável por atualizar um usuário já existente na lista.
     private void mudaTela(RecipeViewHolder holder, int position) {
         //Pessoa userModel = mUsers.get(position);
@@ -89,12 +79,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> 
         holder.context.startActivity(i);
     }
 
-//    // Método responsável por remover um usuário da lista.
-//    private void removerItem(int position) {
-//        mRecipes.remove(position);
-//        notifyItemRemoved(position);
-//        notifyItemRangeChanged(position, mRecipes.size());
-//    }
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public TextView titleRecipe;
@@ -118,5 +102,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> 
             moreButton1 = (Button) itemView.findViewById(R.id.button);
         }
     }
+
 
 }

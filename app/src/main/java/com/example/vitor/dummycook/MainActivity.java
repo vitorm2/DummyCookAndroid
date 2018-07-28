@@ -6,11 +6,10 @@ import android.app.Activity;
 
 import android.content.Context;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -155,5 +154,9 @@ public class MainActivity extends Activity {
 
         listview.setAdapter(adapter);
 */
+
+        SearchView simpleSearchView = (SearchView) findViewById(R.id.simpleSearchView); // inititate a search view
+
     }
+
 }

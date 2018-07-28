@@ -25,12 +25,25 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textRequiriments = (TextView) findViewById(R.id.text_requiriments);
         TextView textIngredients = (TextView) findViewById(R.id.text_ingredients);
         ImageView imageRecipe = (ImageView) findViewById(R.id.image_recipe);
-        Button stratButton = (Button) findViewById(R.id.button_start);
+        Button startButton = (Button) findViewById(R.id.button_start);
         Button stepsButton = (Button) findViewById(R.id.button_steps);
 
         stepsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(DetailsActivity.this, StepsActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("recipeSelected",recipe);
+
+                i.putExtras(bundle);
+
+                startActivity(i);
+            }
+        });
+
+        startButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(DetailsActivity.this, MainStepActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("recipeSelected",recipe);

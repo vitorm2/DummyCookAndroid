@@ -22,7 +22,6 @@ public class Step implements Serializable{
     }
 
     public String getTextStep() {
-
         return textStep;
     }
 

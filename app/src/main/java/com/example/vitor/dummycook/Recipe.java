@@ -1,6 +1,5 @@
 package com.example.vitor.dummycook;
 
-import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 import java.util.ArrayList;

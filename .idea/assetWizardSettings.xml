@@ -55,7 +55,6 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="C:\Users\Gerson\Desktop\icon.png" />
                                       <entry key="outputName" value="ic_relogio" />
                                     </map>
@@ -68,6 +67,28 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="f9fdf1" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/D:/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_replay_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -84,11 +105,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
-                                      <entry key="backgroundColor" value="fd9928" />
+                                      <entry key="backgroundColor" value="ecfddc" />
                                       <entry key="cropped" value="true" />
+                                      <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="C:\Users\Gerson\Desktop\Curso IOS\dummycook-master\DummyCook\DummyCook\Assets.xcassets\AppIcon-1.appiconset\Icon-App-83.5x83.5@2x.png" />
-                                      <entry key="outputName" value="ic_app" />
+                                      <entry key="outputName" value="ic_restart" />
                                     </map>
                                   </option>
                                 </PersistentState>

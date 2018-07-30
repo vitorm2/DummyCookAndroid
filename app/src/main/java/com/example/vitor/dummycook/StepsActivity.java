@@ -33,10 +33,7 @@ public class StepsActivity extends AppCompatActivity {
         TextView title_textStepsList = (TextView) findViewById(R.id.text_titleStepslist);
         TextView text_detailsStepList = (TextView) findViewById(R.id.text_detailsSteplist);
 
-        /*
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.line_steps_list, lista);
-        */
+
 
         StepsListAdapter adapter = new StepsListAdapter(stepsList, this);
         stepsListView.setAdapter(adapter);

@@ -39,7 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> 
     }
 
 
-
+    // Preenche a RecycleView
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
         holder.titleRecipe.setText(String.format(Locale.getDefault(),
@@ -52,8 +52,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> 
         int resID = mContext.getIdentifier(mRecipes.get(position).getRecipeImg(), "drawable", "com.example.vitor.dummycook");
         holder.imageRecipe.setImageResource(resID);
 
-
-        holder.moreButton1.setOnClickListener(view -> mudaTela(holder, position));
+        //  Caso haja um click em um item da list realiza o metodo changeIntent
+        holder.moreButton1.setOnClickListener(view -> changeIntent(holder, position));
     }
 
     @Override
@@ -61,21 +61,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecipeViewHolder> 
         return mRecipes != null ? mRecipes.size() : 0;
     }
 
-    // Método responsável por atualizar um usuário já existente na lista.
-    private void mudaTela(RecipeViewHolder holder, int position) {
-        //Pessoa userModel = mUsers.get(position);
-        //userModel.incrementAge();
-        //notifyItemChanged(position);
-        //Log.d("123", "POSIÇÃO: "+ position);
+    // Muda para para DetailsActivity e passa a receita selecionada por Bundle
+    private void changeIntent(RecipeViewHolder holder, int position) {
+
         Intent i =  new Intent(holder.context, DetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("recipeSelected", mRecipes.get(position));
 
-        Log.d("recipeName", mRecipes.get(position).getName());
-
         i.putExtras(bundle);
 
-        Log.d("Aqui", "Aqui");
         holder.context.startActivity(i);
     }
 

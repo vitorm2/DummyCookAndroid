@@ -52,9 +52,9 @@ public class MainStepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_step);
-        Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipeSelected");
-        index = getIntent().getIntExtra("index", 0);
 
+        Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipeSelected");
+        index = getIntent().getIntExtra("index", 0); // Recebe o valor do index
 
 
         currentStep =  (TextView) findViewById(R.id.current_step);
@@ -70,14 +70,12 @@ public class MainStepActivity extends AppCompatActivity {
         previousButton = (Button) findViewById(R.id.button_previous);
         nextButton = (Button) findViewById(R.id.button_next);
 
-        //progressBar.setProgressTintList(ColorStateList.valueOf(Color.Blue));
-
-
         pauseTimerButton.setEnabled(false);
         resetTimerButton.setEnabled(false);
 
         stepListRecipe = recipe.getStepList();
 
+        // Esconde Timer
         textTimer.setVisibility(View.INVISIBLE);
         playTimerButton.setVisibility(View.INVISIBLE);
         pauseTimerButton.setVisibility(View.INVISIBLE);
@@ -88,6 +86,7 @@ public class MainStepActivity extends AppCompatActivity {
 
         updateUI();
 
+        // Metodo responsavel por iniciar e pausar o video clicando sobre ele.
         videoStep.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -100,51 +99,63 @@ public class MainStepActivity extends AppCompatActivity {
             }
         });
 
+        // Inicia o timer
         playTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 starResumeTimer();
         }});
 
+        // Pausa o timer
         pauseTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //When user request to pause the CountDownTimer
+
                 isPaused = true;
 
-                //Enable the resume and cancel button
                 resetTimerButton.setEnabled(true);
-                //Disable the start and pause button
                 playTimerButton.setEnabled(true);
             }
         });
 
+        // Reinicia o timer
         resetTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 isPaused = true;
                 playTimerButton.setEnabled(true);
                 timeRemaining = timeInitial;
-               setInitialTime();
+                setInitialTime();
             }
         });
 
+        // Atualiza a view com o conteudo do proximo passo
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Pausa o timer quando umda de tela
+                isPaused = true;
+                playTimerButton.setEnabled(true);
+
                 index++;
                 checkTimer();
                 updateUI();
-            }});
+            }
+        });
 
+        // Atualiza a view com o conteudo do passo anterior
         previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                    index--;
-                    checkTimer();
-                    updateUI();
-                }
+                // Pausa o timer quando umda de tela
+                isPaused = true;
+                playTimerButton.setEnabled(true);
+
+                index--;
+                checkTimer();
+                updateUI();
+            }
         });
 
 
     }
 
+    // Seta o valor do timer informado pelo step
     private void setInitialTime() {
         textTimer.setText(""+String.format(FORMAT,
                 TimeUnit.MILLISECONDS.toHours(timeInitial),
@@ -154,18 +165,25 @@ public class MainStepActivity extends AppCompatActivity {
                         TimeUnit.MILLISECONDS.toMinutes(timeInitial))));
     }
 
+    // Atualiza as informações da view de acordo com o passo
     private void updateUI() {
+
+        // Atualiza o numero do passo de acordo com o passo atual.
         currentStep.setText("Step "+stepListRecipe.get(index).getIndex()+ " of " + stepListRecipe.size());
+        // Ajusta a progress bar de acordo com o passo atual.
         progressBar.setProgress(((index+1)*100)/stepListRecipe.size());
+
         titleStep.setText(stepListRecipe.get(index).getTitleStep());
         textStep.setText(stepListRecipe.get(index).getTextStep());
 
+        // Retira o botao passo anterior no primeiro passo da lista
         if(index == 0){
             previousButton.setVisibility(View.INVISIBLE);
         }else{
             previousButton.setVisibility(View.VISIBLE);
         }
 
+        // Retira o botao próximo passo no ultimo passo da lista
         if(index == stepListRecipe.size()-1){
             nextButton.setVisibility(View.INVISIBLE);
         }else{
@@ -186,6 +204,8 @@ public class MainStepActivity extends AppCompatActivity {
             String path = "android.resource://"+getPackageName()+"/"+stepListRecipe.get(index).getVideoStep();
             videoStep.setVideoURI(Uri.parse(path));
             videoStep.setSoundEffectsEnabled(true);
+
+            // Tira o som do video
             AudioManager mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
         }
@@ -200,6 +220,7 @@ public class MainStepActivity extends AppCompatActivity {
         }
     }
 
+    // Inicia ou reinicia o timer
     private void starResumeTimer(){
         isPaused = false;
         isCanceled = false;
@@ -212,28 +233,18 @@ public class MainStepActivity extends AppCompatActivity {
         resetTimerButton.setEnabled(true);
 
         CountDownTimer timer;
-        long millisInFuture = timeRemaining; //15 seconds
+        long millisInFuture = timeRemaining; // Tempo de incio do timer
         long countDownInterval = 1000; //1 second
 
 
         //Initialize a new CountDownTimer instance
         timer = new CountDownTimer(millisInFuture,countDownInterval){
             public void onTick(long millisUntilFinished){
-                //do something in every tick
                 if(isPaused || isCanceled)
                 {
-                    //If the user request to cancel or paused the
-                    //CountDownTimer we will cancel the current instance
                     cancel();
                 }
                 else {
-                    //Display the remaining seconds to app interface
-                    //1 second = 1000 milliseconds
-//                    float hr = (millisUntilFinished/1000)/3600;
-//                    float min = (millisUntilFinished/100)/60;
-//                    float sec = millisUntilFinished/1000;
-//                    textTimer.setText(hr+":"+min+":"+sec);
-                    //Put count down timer remaining time in a variable
                     textTimer.setText(""+String.format(FORMAT,
                             TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
                             TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
@@ -244,18 +255,17 @@ public class MainStepActivity extends AppCompatActivity {
                 }
             }
             public void onFinish(){
-                //Do something when count down finished
                 textTimer.setText("Done");
 
-                //Enable the start button
+
                 playTimerButton.setEnabled(false);
-                //Disable the pause, resume and cancel button
                 pauseTimerButton.setEnabled(false);
                 resetTimerButton.setEnabled(true);
             }
         }.start();
     }
 
+    // Mostra o timer sehouver necessidade e pega o valor do timer e atribui a uma variavel
     public void checkTimer(){
         if(stepListRecipe.get(index).getTimerStep().equals("")){
 

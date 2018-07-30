@@ -34,6 +34,8 @@ public class MainActivity extends Activity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+
+        // Endereço dos videos em resources
         int video_r1_step1 = R.raw.r1_step1;
         int video_r1_step3 =  R.raw.r1_step3;
 
@@ -126,30 +128,12 @@ public class MainActivity extends Activity {
         recipeList.add(r3);
 
 
+        // Passa contexto para view Adapter para ter acesso aos resources
         Context context =  getApplicationContext();
         android.content.res.Resources res = context.getResources();
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(recipeList, res);
         mRecyclerView.setAdapter(mAdapter);
-
-
-        //mRecyclerView.addItemDecoration(
-          //
-        //      new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
-    // ...
-
-        /*ListView listview = (ListView) findViewById(R.id.lista);
-
-
-        String[] dados = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread",
-                "Honeycomb", "Ice Cream Sandwich", "Jelly Bean",
-                "KitKat", "Lollipop", "Marshmallow", "Nougat" };
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dados);
-
-        listview.setAdapter(adapter);
-*/
 
         SearchView simpleSearchView = (SearchView) findViewById(R.id.simpleSearchView); // inititate a search view
 

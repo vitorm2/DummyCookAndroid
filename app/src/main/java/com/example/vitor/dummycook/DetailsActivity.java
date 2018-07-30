@@ -47,7 +47,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("recipeSelected",recipe);
-
+                bundle.putInt("index", 0);
                 i.putExtras(bundle);
 
                 startActivity(i);

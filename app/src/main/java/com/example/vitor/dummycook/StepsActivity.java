@@ -1,13 +1,15 @@
 package com.example.vitor.dummycook;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class StepsActivity extends AppCompatActivity {
 
@@ -38,5 +40,21 @@ public class StepsActivity extends AppCompatActivity {
 
         StepsListAdapter adapter = new StepsListAdapter(stepsList, this);
         stepsListView.setAdapter(adapter);
+
+        stepsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Seu codigo aqui
+                Intent i = new Intent(StepsActivity.this, MainStepActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("recipeSelected",recipe);
+                bundle.putInt("index", position);
+                i.putExtras(bundle);
+
+                startActivity(i);
+            }
+        });
+
     }
 }

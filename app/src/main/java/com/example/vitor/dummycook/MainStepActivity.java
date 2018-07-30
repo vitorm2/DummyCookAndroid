@@ -40,7 +40,7 @@ public class MainStepActivity extends AppCompatActivity {
     private Button previousButton;
     private Button nextButton;
     private ArrayList<Step> stepListRecipe;
-    private int index = 0;
+    private int index;
     private long timeInitial = 0;
     private long timeRemaining = 0;
     private boolean isPaused = false;
@@ -53,6 +53,9 @@ public class MainStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_step);
         Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipeSelected");
+        index = getIntent().getIntExtra("index", 0);
+
+
 
         currentStep =  (TextView) findViewById(R.id.current_step);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

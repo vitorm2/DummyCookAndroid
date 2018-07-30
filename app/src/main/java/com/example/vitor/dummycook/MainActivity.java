@@ -34,35 +34,31 @@ public class MainActivity extends Activity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //String[] names = {"Alan", "Arthur", "Nicolas", "Angela", "Brenda", "Liz"};
-        //String[] cities = {"Rio", "Miami", "Paris", "Montevideo", "Tokyo", "Nairobi"};
-        //String desc = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit";
-
-        //ArrayList<Pessoa> lista = new ArrayList<>();
-
+        int video_r1_step1 = R.raw.r1_step1;
+        int video_r1_step3 =  R.raw.r1_step3;
 
         ArrayList<Step> stepList_rec1 =  new ArrayList<>();
 
         Step r1_step1 =  new Step("Melt the sugar in a pan over low heat, stiring constantly, until the sugar becomes a golden brown syrup.",
-                "Melt the sugar", 1, "", "step1.mov", "");
+                "Melt the sugar", 1, "", video_r1_step1, "");
         Step r1_step2 =  new Step("Once the sugar becomes a golden brown syrup, it`s ready. Switch the stove off.",
-                "Turning off the stove", 2, "step2", "", "");
+                "Turning off the stove", 2, "step2", 0, "");
         Step r1_step3 =  new Step("Place all other ingredients into a blender, blend it for 5 minutes.",
-                "Blend the ingredients", 3, "", "step3.mov", "300");
+                "Blend the ingredients", 3, "", video_r1_step3, "300");
         Step r1_step4 =  new Step("Pour mixture into the pan. The pan is now with the sugar caramelized",
-                "Pour the mixture into the pan", 4, "step4", "", "");
+                "Pour the mixture into the pan", 4, "step4", 0, "");
         Step r1_step5 =  new Step("Place water into a cake tin. Then, place the pan with the mixture and the caramelized sugar inside",
-                "Place water into a cake tin", 5, "step5", "", "");
+                "Place water into a cake tin", 5, "step5", 0, "");
         Step r1_step6 =  new Step("Turn on the oven at 200 degrees and put the  cake tin inside. Let it cook for 2 hours.",
-                "Put the cake tin into the oven", 6, "step6", "", "");
+                "Put the cake tin into the oven", 6, "step6", 0, "");
         Step r1_step7 =  new Step("Carefully remove your pan from the oven, watch out as the water will be very hot",
-                "Remove from the oven", 7, "step7", "", "");
+                "Remove from the oven", 7, "step7", 0, "");
         Step r1_step8 =  new Step("The flan must cool for a few hours, better if you let it rest on the refrigerator overnight",
-                "Let it cool", 8, "", "", "");
+                "Let it cool", 8, "", 0, "");
         Step r1_step9 =  new Step("To take if off the pan, heat the pan over low heat for 20 seconds, then invert into a serving plate. Pick a proper plate as it needs to be large enough for the flan and some of the caramel",
-                "Transfer to a plate", 9, "step9", "", "20");
+                "Transfer to a plate", 9, "step9", 0, "20");
         Step r1_step10 =  new Step("Enjoy your brazilian flan!", "Enjoy your flan!", 10,
-                "step10", "", "");
+                "step10", 0, "");
 
         stepList_rec1.add(r1_step1);
         stepList_rec1.add(r1_step2);
@@ -85,11 +81,11 @@ public class MainActivity extends Activity {
         ArrayList<Step> stepList_rec2 =  new ArrayList<>();
 
         Step r2_step1 = new Step("Turn on your oven to 325 degrees F (165 degrees C) and let it preheat",
-                "Turn on your oven", 1, "preheat", "", "");
+                "Turn on your oven", 1, "preheat", 0, "");
         Step r2_step2 = new Step("In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth",
-                "Turn on your oven", 2, "mixing", "", "");
+                "Turn on your oven", 2, "mixing", 0, "");
         Step r2_step3 = new Step("Blend in eggs, one at a time",
-                "Turn on your oven", 3, "blendeggs", "", "");
+                "Turn on your oven", 3, "blendeggs", 0, "");
 
         stepList_rec2.add(r2_step1);
         stepList_rec2.add(r2_step2);
@@ -106,11 +102,11 @@ public class MainActivity extends Activity {
         ArrayList<Step> stepList_rec3 =  new ArrayList<>();
 
         Step r3_step1 = new Step("Turn on your oven to 325 degrees F (165 degrees C) and let it preheat",
-            "Turn on your oven", 1, "preheat", "", "");
+            "Turn on your oven", 1, "preheat", 0, "");
         Step r3_step2 = new Step("In a large bowl, combine cream cheese, sugar and vanilla and beat until smooth",
-            "Turn on your oven", 2, "mixing", "", "");
+            "Turn on your oven", 2, "mixing", 0, "");
         Step r3_step3 = new Step("Blend in eggs, one at a time",
-            "Turn on your oven", 3, "blendeggs", "", "");
+            "Turn on your oven", 3, "blendeggs", 0, "");
 
         stepList_rec2.add(r3_step1);
         stepList_rec2.add(r3_step2);

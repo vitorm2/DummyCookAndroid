@@ -1,9 +1,18 @@
 package com.example.vitor.dummycook;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -25,25 +34,24 @@ public class MainStepActivity extends AppCompatActivity {
     private ImageView imageStep;
     private VideoView videoStep;
     private TextView textTimer;
-    private CountDownTimer timer2;
     private ImageButton playTimerButton;
     private ImageButton pauseTimerButton;
     private ImageButton resetTimerButton;
+    private Button previousButton;
+    private Button nextButton;
     private ArrayList<Step> stepListRecipe;
     private int index = 0;
-    private long timeInitial = 70000;
+    private long timeInitial = 0;
     private long timeRemaining = 0;
-    //Declare a variable to hold count down timer's paused status
     private boolean isPaused = false;
-    //Declare a variable to hold count down timer's paused status
     private boolean isCanceled = false;
     private static final String FORMAT = "%02d:%02d:%02d";
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_step);
-        timeRemaining = timeInitial;
         Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipeSelected");
 
         currentStep =  (TextView) findViewById(R.id.current_step);
@@ -56,7 +64,10 @@ public class MainStepActivity extends AppCompatActivity {
         playTimerButton = (ImageButton) findViewById(R.id.button_play_timer);
         pauseTimerButton = (ImageButton) findViewById(R.id.button_pause_timer);
         resetTimerButton= (ImageButton) findViewById(R.id.button_reset_timer);
+        previousButton = (Button) findViewById(R.id.button_previous);
+        nextButton = (Button) findViewById(R.id.button_next);
 
+        //progressBar.setProgressTintList(ColorStateList.valueOf(Color.Blue));
 
 
         pauseTimerButton.setEnabled(false);
@@ -64,17 +75,32 @@ public class MainStepActivity extends AppCompatActivity {
 
         stepListRecipe = recipe.getStepList();
 
+        textTimer.setVisibility(View.INVISIBLE);
+        playTimerButton.setVisibility(View.INVISIBLE);
+        pauseTimerButton.setVisibility(View.INVISIBLE);
+        resetTimerButton.setVisibility(View.INVISIBLE);
 
-        setInitialTime();
+        checkTimer();
+
 
         updateUI();
 
+        videoStep.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (videoStep.isPlaying()) {
+                    videoStep.pause();
+                } else {
+                    videoStep.start();
+                }
+                return  false;
+            }
+        });
 
         playTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 starResumeTimer();
         }});
-
 
         pauseTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -88,7 +114,6 @@ public class MainStepActivity extends AppCompatActivity {
             }
         });
 
-
         resetTimerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 isPaused = true;
@@ -97,6 +122,23 @@ public class MainStepActivity extends AppCompatActivity {
                setInitialTime();
             }
         });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                index++;
+                checkTimer();
+                updateUI();
+            }});
+
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    index--;
+                    checkTimer();
+                    updateUI();
+                }
+        });
+
 
     }
 
@@ -110,21 +152,50 @@ public class MainStepActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        currentStep.setText("Step "+stepListRecipe.get(index).getIndex()+ "of " + stepListRecipe.size());
-
+        currentStep.setText("Step "+stepListRecipe.get(index).getIndex()+ " of " + stepListRecipe.size());
+        progressBar.setProgress(((index+1)*100)/stepListRecipe.size());
         titleStep.setText(stepListRecipe.get(index).getTitleStep());
         textStep.setText(stepListRecipe.get(index).getTextStep());
-        if(stepListRecipe.get(index).getImageStep() != "" && stepListRecipe.get(index).getVideoStep() == ""){
+
+        if(index == 0){
+            previousButton.setVisibility(View.INVISIBLE);
+        }else{
+            previousButton.setVisibility(View.VISIBLE);
+        }
+
+        if(index == stepListRecipe.size()-1){
+            nextButton.setVisibility(View.INVISIBLE);
+        }else{
+            nextButton.setVisibility(View.VISIBLE);
+        }
+
+        // Se nao tiver nada
+        if(stepListRecipe.get(index).getImageStep().equals("") && stepListRecipe.get(index).getVideoStep() == 0){
+            imageStep.setVisibility(View.INVISIBLE);
+            videoStep.setVisibility(View.INVISIBLE);
+
+        }
+        // Se for video
+        else if(stepListRecipe.get(index).getVideoStep() != 0 && stepListRecipe.get(index).getImageStep().equals("")){
+            imageStep.setVisibility(View.INVISIBLE);
+            videoStep.setVisibility(View.VISIBLE);
+
+            String path = "android.resource://"+getPackageName()+"/"+stepListRecipe.get(index).getVideoStep();
+            videoStep.setVideoURI(Uri.parse(path));
+            videoStep.setSoundEffectsEnabled(true);
+            AudioManager mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+        }
+        // Se for imagem
+        else{
+            videoStep.setVideoURI(null);
             imageStep.setVisibility(View.VISIBLE);
+            videoStep.setVisibility(View.INVISIBLE);
+
             int resID = getResources().getIdentifier(stepListRecipe.get(index).getImageStep(), "drawable", "com.example.vitor.dummycook");
             imageStep.setImageResource(resID);
-            videoStep.setVisibility(View.INVISIBLE);
-        }else if(stepListRecipe.get(index).getVideoStep() != "" && stepListRecipe.get(index).getImageStep() == ""){
-            videoStep.setVisibility(View.VISIBLE);
-            //int resID = getResources().getIdentifier(stepListRecipe.get(index).getVideoStep(), "drawable", "com.example.vitor.dummycook");
         }
     }
-
 
     private void starResumeTimer(){
         isPaused = false;
@@ -181,5 +252,27 @@ public class MainStepActivity extends AppCompatActivity {
             }
         }.start();
     }
+
+    public void checkTimer(){
+        if(stepListRecipe.get(index).getTimerStep().equals("")){
+
+            textTimer.setVisibility(View.INVISIBLE);
+            playTimerButton.setVisibility(View.INVISIBLE);
+            pauseTimerButton.setVisibility(View.INVISIBLE);
+            resetTimerButton.setVisibility(View.INVISIBLE);
+
+        }else{
+            timeInitial = Integer.parseInt(stepListRecipe.get(index).getTimerStep()) * 1000;
+            timeRemaining = timeInitial;
+
+            textTimer.setVisibility(View.VISIBLE);
+            playTimerButton.setVisibility(View.VISIBLE);
+            pauseTimerButton.setVisibility(View.VISIBLE);
+            resetTimerButton.setVisibility(View.VISIBLE);
+            setInitialTime();
+           }
+    }
+
+
 }
 

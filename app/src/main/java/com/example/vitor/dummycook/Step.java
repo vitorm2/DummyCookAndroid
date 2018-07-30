@@ -8,17 +8,18 @@ public class Step implements Serializable{
     private String titleStep;
     private int index;
     private String imageStep;
-    private String videoStep;
+    private int videoStep;
     private String timerStep;
 
 
-    public Step(String textStep, String titleStep, int index, String imageStep, String videoStep, String timerStep) {
+    public Step(String textStep, String titleStep, int index, String imageStep, int videoStep, String timerStep) {
         this.textStep = textStep;
         this.titleStep = titleStep;
         this.index = index;
         this.imageStep = imageStep;
         this.videoStep = videoStep;
         this.index = index;
+        this.timerStep = timerStep;
     }
 
     public String getTextStep() {
@@ -53,11 +54,11 @@ public class Step implements Serializable{
         this.imageStep = imageStep;
     }
 
-    public String getVideoStep() {
+    public int getVideoStep() {
         return videoStep;
     }
 
-    public void setVideoStep(String videoStep) {
+    public void setVideoStep(int videoStep) {
         this.videoStep = videoStep;
     }
 

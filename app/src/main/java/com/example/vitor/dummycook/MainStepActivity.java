@@ -1,6 +1,10 @@
 package com.example.vitor.dummycook;
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -22,6 +26,7 @@ import android.widget.VideoView;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 
@@ -151,8 +156,6 @@ public class MainStepActivity extends AppCompatActivity {
                 updateUI();
             }
         });
-
-
     }
 
     // Seta o valor do timer informado pelo step

@@ -4,14 +4,21 @@ package com.example.vitor.dummycook;
 import android.app.Activity;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class MainActivity extends Activity {
@@ -19,6 +26,7 @@ public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Button botaoCancel;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +144,54 @@ public class MainActivity extends Activity {
         mRecyclerView.setAdapter(mAdapter);
 
         SearchView simpleSearchView = (SearchView) findViewById(R.id.simpleSearchView); // inititate a search view
+
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("recipe",r1);
+        bundle.putInt("index", 1);
+        notificationIntent.putExtras(bundle);
+
+        notificationIntent.addCategory("android.intent.category.DEFAULT");
+
+        Intent tela1 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+
+        Bundle bundle1 = new Bundle();
+        bundle1.putSerializable("recipe",r2);
+        bundle.putInt("index", 2);
+        tela1.putExtras(bundle1);
+
+        tela1.addCategory("android.intent.category.DEFAULT");
+
+        PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        PendingIntent broadcast1 = PendingIntent.getBroadcast(this, 200, tela1, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, 2);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
+
+        cal.add(Calendar.SECOND, 4);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast1);
+
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 2, broadcast);
+
+
+
+
+        botaoCancel =  findViewById(R.id.button2);
+
+        botaoCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                alarmManager.cancel(broadcast);
+                alarmManager.cancel(broadcast1);
+
+            }});
 
     }
 

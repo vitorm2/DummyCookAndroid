@@ -55,7 +55,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="C:\Users\Gerson\Desktop\icon.png" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\Gerson\Desktop\ic_app-web.png" />
                                       <entry key="outputName" value="ic_relogio" />
                                     </map>
                                   </option>
@@ -105,11 +106,25 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="backgroundColor" value="ecfddc" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\Gerson\Desktop\Curso IOS\dummycook-master\DummyCook\DummyCook\Assets.xcassets\AppIcon-1.appiconset\Icon-App-83.5x83.5@2x.png" />
-                                      <entry key="outputName" value="ic_restart" />
+                                      <entry key="imageAsset" value="C:\Users\Gerson\Desktop\Sem título.png" />
+                                      <entry key="outputName" value="ic_notification" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="notification">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\Gerson\Desktop\ic_app-web.png" />
+                                      <entry key="outputName" value="ic_notification_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
